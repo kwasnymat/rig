@@ -14,7 +14,8 @@ export type DigestRow = {
 };
 
 // Rows sorted by job. `badLines` counts lines that did not parse; they never throw.
-export type Night = { night: string; rows: DigestRow[]; badLines: number };
+// `counts` is per parsed line by status, not per job.
+export type Night = { night: string; rows: DigestRow[]; badLines: number; counts: Record<RunStatus, number> };
 
 // Reads `<runsDir>/<night>.jsonl`. `null` when the night has no file.
 export type ReadNight = (runsDir: string, night: string) => Night | null;
